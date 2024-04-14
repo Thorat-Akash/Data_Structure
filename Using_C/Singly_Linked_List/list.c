@@ -184,6 +184,17 @@ void concat_lists(list_t* p_list_1, list_t* p_list_2)
     p_list_2->next = NULL;
 }
 
+// Return new list by merging two list
+list_t* get_merged_list(list_t* p_list_1, list_t* p_list_2)
+{
+    list_t* p_list = NULL;
+
+    p_list = add_lists(p_list_1, p_list_2);
+    sort(p_list);
+
+    return (p_list);
+}
+
 // Return Reversed List(Reversed by value)
 list_t* get_reversed_list(list_t* p_list)
 {

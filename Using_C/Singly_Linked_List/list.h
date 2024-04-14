@@ -54,6 +54,7 @@ int search_data(list_t* p_list, data_t f_data);             // Search for a spec
 
 list_t* add_lists(list_t* p_list_1, list_t* p_list_2);      // Add given two list in new list and retuen new list
 void concat_lists(list_t* p_list_1, list_t* p_list_2);      // Concatenates the second list to the end of the first list 
+list_t* get_merged_list(list_t* p_list_1, list_t* p_list_2); // Return new list by merging two list
 list_t* get_reversed_list(list_t* p_list);             // Return Reversed List(Reversed by value)
 void reverse_list(list_t* p_list);                     // reverce the list(Reversed by node)
 void sort(list_t* p_list);                                  // Sort the list

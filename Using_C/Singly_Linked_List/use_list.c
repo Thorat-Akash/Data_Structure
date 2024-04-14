@@ -261,6 +261,10 @@ int main(void)
     l3 = add_lists(l1, l2);
     show(l3, "After adding l1, l2 : l3 is ");
     
+    // Getting mearge list of l1 and l2
+    l3 = get_merged_list(l1, l2);
+    show(l3, "After mearing l1, l2 in l3 : ");
+    
     // Concatenate lists l1 and l2
     concat_lists(l1, l2);
     show(l1, "After Concatenating l1 and l2 : l1 is ");
