@@ -51,7 +51,13 @@ status_t remove_start(list_t* p_list);                      // Remove the first 
 status_t remove_end(list_t* p_list);                        // Remove the last element of the list
 status_t remove_data(list_t* p_list, data_t r_data);         // Remove a specific value from the list
 int search_data(list_t* p_list, data_t f_data);             // Search for a specific value in the list
+
+list_t* add_lists(list_t* p_list_1, list_t* p_list_2);      // Add given two list in new list and retuen new list
+void concat_lists(list_t* p_list_1, list_t* p_list_2);      // Concatenates the second list to the end of the first list 
+list_t* get_reversed_list(list_t* p_list);             // Return Reversed List(Reversed by value)
+void reverse_list(list_t* p_list);                     // reverce the list(Reversed by node)
 void sort(list_t* p_list);                                  // Sort the list
+
 int is_list_empty(list_t* p_list);                          // Check if the list is empty
 len_t size(list_t* p_list);                                 // Get the size/length of the list
 void show(list_t* p_list, const char* msg);                  // Display the contents of the list

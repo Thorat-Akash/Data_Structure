@@ -8,7 +8,8 @@
  * This file contains the implementation of a linked list data structure along with
  * various functions for manipulating and operating on the linked list. It provides
  * functions for creating a new list, inserting elements at the beginning and end,
- * removing elements, searching for elements, sorting the list, and more.
+ * removing elements, searching for elements, adding two list, concating one list to another,
+ * revering the list, sorting the list, and more.
  * 
  * The implementation uses a dummy node approach for better management of the list
  * and employs helper routines for common operations such as inserting, deleting, and
@@ -151,6 +152,92 @@ int search_data(list_t* p_list, data_t f_data)
     p_search_node = search_node(p_list, f_data);
     return (p_search_node != NULL);
 }
+
+// Add given two list in new list and retuen new list
+list_t* add_lists(list_t* p_list_1, list_t* p_list_2)
+{
+    list_t* p_new_list = NULL;
+    node_t* p_run = NULL;
+
+    p_new_list = create_list();
+    
+    for(p_run = p_list_1->next; p_run != NULL; p_run = p_run->next)
+        insert_end(p_new_list, p_run->data);
+
+    for(p_run = p_list_2->next; p_run != NULL; p_run = p_run->next)
+        insert_end(p_new_list, p_run->data);
+    
+    return (p_new_list);
+
+}
+
+// Concatenates the second list to the end of the first list     
+void concat_lists(list_t* p_list_1, list_t* p_list_2)
+{
+    node_t* p_run = NULL;
+
+    p_run = p_list_1;
+    while( p_run->next != NULL)
+        p_run = p_run->next;
+
+    p_run->next = p_list_2->next;
+    p_list_2->next = NULL;
+}
+
+// Return Reversed List(Reversed by value)
+list_t* get_reversed_list(list_t* p_list)
+{
+    list_t* p_new_list = NULL;
+    node_t* p_run1 = NULL;
+    node_t* p_run2 = NULL;
+    data_t temp = 0;
+    len_t length = 0;
+
+    p_new_list = create_list();
+    length = size(p_list);
+
+    if(is_list_empty(p_list))
+        return p_new_list;
+    
+    p_run1 = p_list;
+    for(len_t i = 0; i < length/2; ++i)
+    {
+        p_run1 = p_run1->next;
+        p_run2 = p_list;
+        for(len_t j = length - i; j > 0; --j)
+            p_run2 = p_run2->next;
+        
+        temp = p_run1->data;
+        p_run1->data = p_run2->data;
+        p_run2->data = temp;
+    }
+
+    return (p_new_list);
+}
+
+// reverce the list(Reversed by node)           
+void reverse_list(list_t* p_list)
+{
+    node_t* p_run = NULL;
+    node_t* p_run_next = NULL;
+    node_t* p_last_node = NULL;
+    len_t length = 0;
+
+    length = size(p_list);
+    if(length <= 1)
+        return;
+
+    p_last_node = get_end_node(p_list);
+    p_run = p_list; 
+
+    while(p_run->next != p_last_node)
+    {
+        p_run_next = p_run->next;
+        p_run->next = p_run_next->next;
+        p_run_next->next = NULL;
+        generic_insert(p_last_node, p_run_next, p_last_node->next);
+    }    
+}                     
 
 // Sort the list using merge sort algorithm
 void sort(list_t* p_list)
